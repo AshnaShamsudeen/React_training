@@ -1,0 +1,81 @@
+
+<!-- The form should have appropriate labels and input fields for each piece of information.
+The name field should accept only alphabetic characters and be mandatory.
+The email field should validate the input format to ensure it is a valid email address.
+The password field should have a minimum length of 8 characters and be mandatory.
+The terms and conditions checkbox should be unchecked by default, and the form submission should be disabled until it is checked.
+Upon successful submission of the form, display an alert message with the user's name and email address.
+Also save the form data in a List of JSON objects and print it on console after successful submission.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        form{
+            border: 1px solid black;
+            background-color:beige;
+            display: flex;
+            flex-direction: column;
+            width: 450px;
+            padding: 18px;
+            margin: auto;
+            margin-top: 160px;
+            border-radius: 10px;
+        }
+
+        #btn{
+            width: min-content;
+            margin: auto;
+        }
+        #check{
+            margin-bottom: 10px;
+            line-height: 50px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="validate()">
+    <label>Name</label>
+    <input id="name" type="text" required>
+    <label>Email</label>
+    <input id="email" type="email" required>
+    <label>Password</label>
+    <input id="pass" type="password" required>
+    <label><input type="checkbox" id="check" >Terms and Condition</label>
+    <button id="btn" type="submit" >Validate</button>
+</form>
+</body>
+<script>
+    function validate(){
+    event.preventDefault();  
+    let Name=document.getElementById("name").value;
+    let Email=document.getElementById("email").value;
+    let checkBox=document.getElementById("check");
+    let Password=document.getElementById("pass").value;
+    let formatName= /^[a-zA-Z]+$/;
+    let isOk=true;
+    if(!formatName.test(Name)){
+        alert("The name field should accept only alphabetic characters and be mandatory.")
+        isOk=false;
+    }
+    if(Password.length<8){
+        alert("The password field should have a minimum length of 8 characters and be mandatory.")
+        isOk=false;
+    }
+    if(!checkBox.checked){
+        alert("The terms and conditions checkbox should be unchecked by default, and the form submission should be disabled until it is checked.")
+        isOk=false;
+    }
+    if(isOk){
+        alert(
+            `"Name:" ${Name} \n "Email:" ${Email}`
+        )
+    }
+    }
+    
+
+</script>
+
+</html>

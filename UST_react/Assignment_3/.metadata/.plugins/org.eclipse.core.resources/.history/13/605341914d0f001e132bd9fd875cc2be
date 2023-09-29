@@ -1,0 +1,46 @@
+package com.bookstoreapp.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+
+@Valid
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Book {
+
+   @Id
+    private int id;
+
+   
+    @NotBlank(message = "title is required")
+    @Size(max = 100,message = "Title should not exceed 100 characters")
+    private String title;
+
+    @NotBlank(message = "Author name required")
+    @Size(max = 200,message = "Author name should not exceed 200 characters")
+    private String author;
+
+    @Max(9999)
+    @Min(1000)
+    private int publicationYear;
+
+    // @Pattern(regexp="^(\\d{10}||\\d{13})$")
+    @Column(unique = true)
+    @Max(9999999999999l)
+    @Min(1000000000l)
+    private long isbn;
+
+    @Positive(message = "price must be a positive decimal value")
+    @DecimalMin(value = "0.01", message = "price must be positive decimal")
+    private double price;
+
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+
+        form{
+            margin: auto; 
+            width: 300px;
+            margin: auto;
+            padding: 50px;
+            border: 1px solid black;
+            margin-top: 150px;
+           
+        }
+        div{
+            margin-bottom: 20px;
+        }
+        h2{
+            text-align: center;
+        }
+        table{
+            line-height: 30px;
+        }
+
+        #btn1{
+           margin-left:95%;
+        }
+        #btn2{
+           margin-left:40%;
+        }
+        button{
+            margin-top: 10px;
+        }
+        /* #table{
+            border-collapse: border collapse;
+        } */
+        
+    </style>
+    <script src="todo.js"></script>
+</head>
+<body>
+    <form  id="formId" onsubmit="validateDate()" >
+    <table>
+        <tr><h2>TO DO APP</h2></tr>
+    <tr class="div">
+       <td> <label>Task Name</label></td>
+        <td><input type="text" id="name" required ></input></td>
+    </tr>
+        
+    <tr class="div">
+       <td> <label>Due Date</label></td>
+        <td><input type="date" id="date" required></input></td>
+    </tr>
+        
+    <tr class="div">
+       <td> <label>Priority</label></td>
+            <td><select id="dropdown">
+                <option id="option0" value="0" selected  >------Select------</option>
+                <option id="option1" value="high" >High</option>
+                <option id="option2" value="low">Low</option>
+            </select></td>
+    </tr>
+    <tr>
+        <td><button id="btn1"  type="submit">Submit</button></td>
+        <td><button id="btn2" type="button"  onclick="displayTasks()" >View all</button></td>
+    </tr>
+    </table>
+
+    </form>
+    <table id="table">
+        <thead>
+          <tr>
+            <th>Task Name</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody id="tb1">
+        </tbody>
+      </table>
+    
+    
+</body>
+<script>
+
+function displayTasks(){
+    getAllTasks().then(task=>{
+      let tableData='';
+      task.forEach(data => {
+        tableData+=`<tr>
+          <td>${data.taskName}</td>
+          <td>${data.Duedate}</td>
+          <td>${data.priority}</td>
+          </tr>`
+      });
+      document.getElementById("tb1").innerHTML=tableData;
+    }).catch();
+  }
+
+    function saveDate(){
+        // event.preventDefault();
+        let Name=document.getElementById("name").value;
+        let Date=document.getElementById("date").value;
+        let Priority=document.getElementById("dropdown").value;
+
+        let data={
+            taskName:Name,
+            Duedate:Date,
+            priority:Priority
+        }
+        console.log(data);
+    saveItem(data).then(
+    response => console.log(response)).catch(response => console.log(response))
+
+
+    }
+
+    function validateDate(){
+        event.preventDefault();
+        let date=document.getElementById("date").value;
+        let curDate=new Date();
+        let futDate=new Date(date);
+        if(futDate<=curDate){
+            alert("Enter future date....");
+        }
+        else{
+            saveDate();
+            alert('Task Added');
+      document.getElementById("formId").reset();
+
+
+        }
+    }
+</script>
+</html>

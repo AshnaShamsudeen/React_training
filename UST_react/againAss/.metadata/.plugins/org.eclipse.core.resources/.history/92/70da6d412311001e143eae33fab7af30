@@ -1,0 +1,45 @@
+package com.bookstoreapp.exception;
+
+import com.bookstoreapp.dto.ErrorResponse;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import javax.validation.ValidationException;
+
+@RestControllerAdvice
+public class BookstoreErrorHandler {
+
+    // create a method to handle BookNotFoundException
+	@ExceptionHandler(BookAlreadyExistsException.class)
+	@ResponseStatus(code=HttpStatus.NOT_FOUND)
+public ResponseEntity<ErrorResponse> handleBookAlreadyExistsException(BookAlreadyExistsException e){
+		HttpStatus status=HttpStatus.NOT_FOUND;
+		ErrorResponse body=new ErrorResponse(status.value(),e.getMessage(),System.currentTimeMillis(),"/body",
+				status.getReasonPhrase());
+		return ResponseEntity.status(status).body(body);
+}
+    // create a method to handle BookAlreadyExistsException
+	@ExceptionHandler(BookNotFoundException.class)
+	@ResponseStatus(code=HttpStatus.NOT_FOUND)
+public ResponseEntity<ErrorResponse> handleBookNotFoundException(BookNotFoundException e){
+	HttpStatus status=HttpStatus.NOT_FOUND;
+	ErrorResponse body=new ErrorResponse(status.value(),e.getMessage(),System.currentTimeMillis(),"/body",
+			status.getReasonPhrase());
+	return ResponseEntity.status(status).body(body);
+}
+   
+
+    // create a method to validate the request body
+   
+
+  
+    // create a method to handle Exception
+ 
+
+
+
+}

@@ -1,0 +1,50 @@
+package com.bookstoreapp.controller;
+
+import com.bookstoreapp.model.Book;
+import com.bookstoreapp.service.BookstoreService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@RequestMapping("/books")
+public class BookstoreController {
+
+    @Autowired
+    private BookstoreService bookstoreService;
+
+    @ResponseStatus(code=HttpStatus.OK)
+    public List<Book> getAllBooks() {
+        return bookstoreService.getAllBooks() ;
+    }
+
+
+    @ResponseStatus(code=HttpStatus.OK)
+    public Book saveBook(@RequestBody Book book) {
+        return bookstoreService.saveBook(book);
+    }
+
+    @ResponseStatus(code=HttpStatus.ACCEPTED)
+    public Book updateBook(int id, Book book) {
+        return bookstoreService.updateBook(id, book);
+    }
+
+    @ResponseStatus(code=HttpStatus.OK)
+    public void deleteBook(int id) {
+    	bookstoreService.deleteBook(id);
+    }
+
+
+    
+   
+   
+    public Book getBookById(int id) {
+       return bookstoreService.getBookById(id);
+    }
+
+
+
+
+}

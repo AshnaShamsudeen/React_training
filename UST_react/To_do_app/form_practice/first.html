@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        form{
+            line-height: 20px;
+            border: 1px solid black;
+            margin: auto;
+            padding: 30px;
+            width: 300px;
+            height: 400px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            background-color: aqua;
+            color:darkblue;
+        }
+        
+        #div1{
+            margin-left:10px;
+            margin-top: 60px;
+        }
+        #div2{
+            margin-left:33px;
+            margin-top: 10px;
+        }
+        #div3{
+            margin-right:62px;
+            margin-top: 10px;
+        }
+        #div4{
+            margin-left:0px;
+            margin-top: 10px;
+        }
+        #div5{
+            margin-right:80px;
+            margin-top: 10px;
+        }
+        #div6{
+            margin-top: 10px;
+
+        }
+        h3{
+            text-align: center;
+        }
+        #btn{
+            background-color: brown;
+            color: chartreuse;
+            border-radius: 20px;
+
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h3>Form Fill</h3>
+    <div id="div1">
+    <label>User name</label>
+    <input type="text" id="name" placeholder="enter user name" required>
+    </div>
+    <div id="div2">
+    <label>Phone number</label>
+    <input type="number" id="phn" placeholder="enter user number" required>
+    </div>
+    <div id="div3">
+    <label>Gender</label>
+    <input type="checkbox" id="gen1" >Male
+    <input type="checkbox" id="gen2" >Female
+    </div>
+    <div id="div4">
+    <label>Password</label>
+    <input type="password" id="pass" placeholder="enter user password">
+    </div>
+    <div id="div5">
+        <label>Language</label>
+        <select>
+            
+            <option>Malayalam</option>
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Korean</option>
+        </select>
+    </div>
+    <div id="div6">
+        <button id="btn" type="submit">
+            Submit 
+        </button>
+    </div>
+    </form>
+</body>
+</html>

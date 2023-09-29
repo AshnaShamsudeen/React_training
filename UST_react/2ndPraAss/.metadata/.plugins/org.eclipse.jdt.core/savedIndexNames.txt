@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+C:\UST_react\2ndPraAss\.metadata\.plugins\org.eclipse.jdt.core
+3984782557.index

@@ -1,0 +1,10 @@
+{
+  "albums": [
+    {
+      "id": 2002,
+      "title": "Fallen",
+      "artist": "Evanescence",
+      "price": 2345
+    }
+  ]
+}

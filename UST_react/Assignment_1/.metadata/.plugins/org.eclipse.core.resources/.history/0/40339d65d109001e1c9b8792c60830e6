@@ -1,0 +1,52 @@
+package com.stackroute.service;
+
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.stackroute.domain.Blog;
+import com.stackroute.repository.BlogRepository;
+
+/* Add annotation to declare this class as Service class.
+ * Also it should implement BlogService Interface and override all the implemented methods.*/
+@Service
+public class BlogServiceImpl implements BlogService {
+	@Autowired
+	BlogRepository repo;
+
+	public Blog saveBlog(Blog blog) {
+		// TODO Auto-generated method stub
+		return repo.save(blog);
+	}
+
+	public List<Blog> getAllBlogs() {
+		// TODO Auto-generated method stub
+		return (List<Blog>) repo.findAll();
+	}
+
+	public Blog getBlogById(int id) {
+		// TODO Auto-generated method stub
+		return repo.findById(id).get();
+	}
+
+	public Blog deleteBlog(int id) {
+		// TODO Auto-generated method stub
+		Optional<Blog> delBlog = repo.findById(id);
+		if (delBlog.isPresent()) {
+			repo.deleteById(id);
+			repo.findById(id).get();
+			return delBlog.get();
+		}
+		return null;
+	}
+
+	public Blog updateBlog(Blog blog) {
+		// TODO Auto-generated method stub
+		Optional<Blog> updBlod = repo.findById(blog.getBlogId());
+		if (updBlod.isPresent()) {
+			repo.save(blog);
+			return repo.findById(blog.getBlogId()).get();
+		}
+		return null;
+	}
+}
